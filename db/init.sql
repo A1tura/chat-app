@@ -1,6 +1,7 @@
 CREATE TABLE "user" (
     id bigint GENERATED ALWAYS AS IDENTITY,
     username text UNIQUE,
+    isOnline bool DEFAULT false,
     password_hash text,
     bio text DEFAULT '',
     createdAt timestamp,
@@ -10,7 +11,7 @@ CREATE TABLE "user" (
 CREATE TABLE chat (
     id bigint GENERATED ALWAYS AS IDENTITY,
     users bigint[],
-    createdAt timestamp,
+    createdAt timestamp DEFAULT CURRENT_TIMESTAMP,
     updatedAt timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -19,5 +20,6 @@ CREATE TABLE message (
     userId bigint,
     chatId bigint,
     message text,
-    createdAt timestamp
+    isRead bool DEFAULT false,
+    createdAt timestamp DEFAULT CURRENT_TIMESTAMP
 );

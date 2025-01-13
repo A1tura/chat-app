@@ -61,3 +61,7 @@ func (db *DB) SigninUser(username string, password_hash string) (bool, int) {
 
 	return true, id
 }
+
+func (db *DB) ChangeStatus(id int, status bool) {
+    db.Exec(`UPDATE "user" SET isonline = $1 WHERE id = $2`, status, id)
+}
